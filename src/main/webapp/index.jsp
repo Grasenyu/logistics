@@ -213,7 +213,7 @@ $('body').on('click', function() {
 </script>
 
 </html>
-<<script type="text/javascript">
+<script type="text/javascript">
 $(this).addClass('active');
 } else {
     dd.hide();
