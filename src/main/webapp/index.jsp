@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base.css"> 
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/addClass.css">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
