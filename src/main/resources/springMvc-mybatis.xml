@@ -82,7 +82,7 @@
  		<tx:attributes>
  			<tx:method name="getUser" read-only="true" />
  			<tx:method name="add*" propagation="REQUIRED" />
- 			<tx:method name="qyery*" read-only="false" propagation="NOT_SUPPORTED" /> 
+ 			<tx:method name="query*" read-only="false" propagation="NOT_SUPPORTED" /> 
  			<tx:method name="save*" propagation="REQUIRED" /> 
  			<tx:method name="update*" propagation="REQUIRED" /> 
  			<tx:method name="delete*" propagation="REQUIRED" /> 

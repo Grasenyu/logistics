@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>点菜宝贝，后台管理系统</title>
+    <title>德邦物流管理系统</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
             <img src="img/logo.png" alt="">
         </a>
         <div class="info clearfix">
-            <a href="#">站点首页</a> |
+            
             <a href="#">更新首页缓存</a>
         </div>
         <div class="right pull-right text-right" id="hovpad">
@@ -121,8 +121,8 @@
             <dl>
                 <dt>跟踪管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#">订单跟踪 </a>
-                    <a href="#">车辆跟踪 </a>
+                    <a href="#view/order_tracking.jsp">订单跟踪 </a>
+                    <a href="#view/vehicle_tracking.jsp">车辆跟踪 </a>
                     <a href="#">货损跟踪 </a>
                     <a href="#">统计跟踪 </a>
                 </dd>
@@ -211,30 +211,4 @@ $('body').on('click', function() {
 
     
 </script>
-
-</html>
-<<script type="text/javascript">
-$(this).addClass('active');
-} else {
-    dd.hide();
-    $(this).removeClass('active');
-}
-e.stopPropagation();
-});
-$('#hovpad dl').hover(function(e) {
-var dd = $(this).find('dd');
-dd.show();
-$(this).addClass('active');
-}, function(e) {
-var dd = $(this).find('dd');
-dd.hide();
-$(this).removeClass('active');
-})
-$('body').on('click', function() {
-$('#hovpad dl').removeClass('active');
-})
-
-    
-</script>
-
 </html>

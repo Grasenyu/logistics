@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
     <title>点菜宝贝，后台管理系统</title>
     <meta name="keywords" content="点菜宝贝，后台管理系统">
     <meta name="description" content="点菜宝贝，后台管理系统">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/merchant.css">
@@ -23,36 +25,29 @@
     <div class="login-title default"></div>
    <div class="login-name">管理员登录</div>
     <div class="login-form-area">
-         
+         <br>
+         <br>
+        <form action="login.sw" method="post">
         <div class="login-input">
    
             <label for="">账&nbsp;&nbsp;&nbsp;号：</label>
-            <input class="ob-form login-form-user" type="text">
+            <input class="ob-form login-form-user" name="users"   type="text">
         </div>
+        <br>
+        <br>
+        <br>
         <div class="login-input">
             <label for="">密&nbsp;&nbsp;&nbsp;码：</label>
-            <input class="ob-form login-form-user" type="password">
+            <input class="ob-form login-form-user" name ="pwd" type="password">
         </div>
-         <div class="login-input">
-            <label for="">手&nbsp;&nbsp;&nbsp;机：</label>
-            <input class="ob-form login-form-vc" type="text">
-          
-            <div class="ob-form login-vc code-input btn-s" >发送验证码</div>
-        </div>
-        <div class="login-input">
-            <label for="">验证码：</label>
-            <input class="ob-form login-form-tx" type="text" placeholder="手机码">
-            <input class="ob-form login-form-tx" type="text" placeholder="图形码">
-            <input value="xa99" class="ob-form login-vc yzm" type="text" disabled>
-        </div>
-        <div class="login-input">
-            <span class="errorInfo">账号或密码不正确</span>
-        </div>
-        <button class="btn order-food-menu-btn login-btn " >登录</button>
+      
+        <input type="submit" class="btn order-food-menu-btn login-btn " value="登录" >
      
+        
+        </form>
 
     </div>
-    <div class="login-footer clearfix">Copyright © 2017 点菜宝贝 Diancai Baobei.com  All Rights Reserved. <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt=""></div>
+    <div class="login-footer clearfix">Copyright © 2018 德邦物流 Debang.com  All Rights Reserved. <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt=""></div>
 </body>
 <script src="plugin/jquery/jquery.js"></script>
 <script>
