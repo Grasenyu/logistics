@@ -1,13 +1,13 @@
 package com.sanyang.logistics03.vo;
 
-public class Warehouse_type {
+public class WarehouseType {
 	private Integer type_id;
 	private String name;
 	private String description;
-	public Warehouse_type() {
+	public WarehouseType() {
 		// TODO Auto-generated constructor stub
 	}
-	public Warehouse_type(Integer type_id, String name, String description) {
+	public WarehouseType(Integer type_id, String name, String description) {
 		super();
 		this.type_id = type_id;
 		this.name = name;

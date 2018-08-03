@@ -1,10 +1,10 @@
 package com.sanyang.logistics03.vo;
 
-public class User_wh_bridge {
+public class UserWhBridge {
 	
 	private Integer user_id;
 	private Integer wh_id;
-	public User_wh_bridge() {
+	public UserWhBridge() {
 		// TODO Auto-generated constructor stub
 	}
 	public Integer getUser_id() {
@@ -20,7 +20,7 @@ public class User_wh_bridge {
 		this.wh_id = wh_id;
 	}
 	
-	public User_wh_bridge(Integer user_id, Integer wh_id) {
+	public UserWhBridge(Integer user_id, Integer wh_id) {
 		super();
 		this.user_id = user_id;
 		this.wh_id = wh_id;

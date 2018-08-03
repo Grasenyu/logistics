@@ -1,6 +1,6 @@
 package com.sanyang.logistics03.vo;
 
-public class Workorder_Product {
+public class WorkorderProduct {
 	
 	  private int oid;//` int(11) NOT NULL AUTO_INCREMENT,
 	  private int prod_id;//` int(11) DEFAULT NULL,
@@ -8,7 +8,7 @@ public class Workorder_Product {
 	  private int pcount;//` int(11) DEFAULT NULL,
 	  private int scount;//` int(11) DEFAULT NULL,
 	  
-	  public Workorder_Product() {
+	  public WorkorderProduct() {
 		// TODO Auto-generated constructor stub
 	}
 	  
@@ -47,7 +47,7 @@ public class Workorder_Product {
 		return "Workorder_Product [oid=" + oid + ", prod_id=" + prod_id + ", workid=" + workid + ", pcount=" + pcount
 				+ ", scount=" + scount + "]";
 	}
-	public Workorder_Product(int oid, int prod_id, int workid, int pcount, int scount) {
+	public WorkorderProduct(int oid, int prod_id, int workid, int pcount, int scount) {
 		super();
 		this.oid = oid;
 		this.prod_id = prod_id;
