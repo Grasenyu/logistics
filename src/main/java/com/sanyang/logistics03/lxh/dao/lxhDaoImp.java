@@ -1,5 +1,7 @@
 package com.sanyang.logistics03.lxh.dao;
 
-public interface Dao {
+public class lxhDaoImp implements lxhDao{
+	
+	
 
 }

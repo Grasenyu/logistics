@@ -1,5 +1,5 @@
 package com.sanyang.logistics03.lxh.mapper;
 
-public interface DemoMapper {
+public interface LxhDemoMapper {
 
 }
