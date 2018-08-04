@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+    
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,14 +28,14 @@
     <![endif]-->
 </head>
 <body>
-    <a href="login.html"><img class="login-logo" src="img/logo.png"></a>
-    <a class="login-change" href="login.html">PC客户端 <span>&nbsp; | &nbsp;</span> 手机客户端</a>
+    <a href="login.jsp"><img class="login-logo" src="img/logo.png"></a>
+    <a class="login-change" href="login.jsp">PC客户端 <span>&nbsp; | &nbsp;</span> 手机客户端</a>
     <div class="login-title default"></div>
    <div class="login-name">管理员登录</div>
     <div class="login-form-area">
          <br>
          <br>
-        <form action="login.sw" method="post">
+        <form action="<%=basePath %>login.sw" method="post">
         <div class="login-input">
    
             <label for="">账&nbsp;&nbsp;&nbsp;号：</label>
@@ -60,11 +68,11 @@
     });
     $(".login-btn").click(function(event) {
         /* Act on the event */
-        location.href="index.html";
+        location.href="index.jsp";
     });
      $(".ybs").click(function(event) {
         /* Act on the event */
-        location.href="login.html";
+        location.href="login.jsp";
     });
 </script>
 </html>

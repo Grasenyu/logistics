@@ -72,7 +72,7 @@
             <dl>
                 <dt style="border-top: none;">订单管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#view/userList.html">客户订单管理  <i class="lo">12</i> </a>
+                    <a href="#userList.html">客户订单管理  <i class="lo">12</i> </a>
                 </dd>
             </dl>
             <dl>
@@ -121,8 +121,8 @@
             <dl>
                 <dt>跟踪管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#view/order_tracking.jsp">订单跟踪 </a>
-                    <a href="#view/vehicle_tracking.jsp">车辆跟踪 </a>
+                    <a href="#order_tracking.html">订单跟踪 </a>
+                    <a href="#vehicle_tracking.html">车辆跟踪 </a>
                     <a href="#">货损跟踪 </a>
                     <a href="#">统计跟踪 </a>
                 </dd>

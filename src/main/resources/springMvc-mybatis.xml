@@ -16,19 +16,12 @@
     <!-- 打开 annotation -->       
     <context:annotation-config/>
     <!-- 自动扫描所有的dao组件 -->
-	<context:component-scan base-package="com.sanyang" use-default-filters="false">
+	<context:component-scan base-package="com.sanyang.logistics03" use-default-filters="false">
 	    <context:include-filter type="regex" expression="com.sanyang.logistics03.*.dao.*"/>
 	    <context:include-filter type="regex" expression="com.sanyang.logistics03.*.service.*"/>
 	</context:component-scan>
 	
-	<!-- 设置返回json的编码格式 -->
-	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-	     <property name="supportedMediaTypes">
-	         <list>
-	             <value>application/json;charset=UTF-8</value>
-	         </list>
-	     </property>
-	 </bean>
+	
 	 <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
 	 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	     <property name="messageConverters">

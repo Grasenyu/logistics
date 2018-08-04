@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+ <link rel="stylesheet" type="text/css" href="js/bootstrap/js/bootstrap.min.js"/>
+		<script src="js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstarp/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="js/bootstarp-table-1.11.1/bootstrap-table.min.css"/>
+		<script src="js/bootstarp-table-1.11.1/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstarp-table-1.11.1/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<script type="text/javascript">
+			//入口函数
+			$(function() {
+					$("#table").bootstrapTable({
+							url:"MyServlet?type=allstu",//请求后台的url
+							contentType:"json",
+							pagination:true,
+							search:false,
+							sortable: false,     
+							showRefresh:false,
+	//						queryParams:queryParams,
+							queryParams:queryParams,
+							pageNumber:"1",　　//启用插件时默认页数
+						      pageSize:"15",　　//启用插件是默认每页的数据条数
+						      pageList:[10, 25, 50, 100],　　//自定义每页的数量
+							pageSize:3,
+							dataType:"json",
+							columns:[{
+								field:"sid",
+								title:"编号",
+								align:"center",
+							},{
+								field:"sname",
+								title:"姓名",
+								align:"center",
+							},{
+								field:"score",
+								title:"分数", 
+								align:"center",
+							},{
+								field:"sex",
+								title:"性别",
+								align:"center",
+							},{
+								field:"cname",
+								title:"班级",
+								align:"center",
+							},{
+								field:"kname",
+								title:"科目",
+								align:"center",
+							},{
+								field:"sid",
+								title:"操作",
+								align:"center",
+								formatter:function(value,row,index){
+									return '<button class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="update('+row.sid+')" >修改</button> <button class="btn btn-info" onclick="del('+row.sid+')">删除</button>'
+								}
+							}
+							
+							]
+						})
+			}
+
+
+</script>
+
+<body>
+<table id="table" >
+
+</table>
+
+</body>
+</html>

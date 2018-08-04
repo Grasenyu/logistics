@@ -8,12 +8,13 @@ public class LoginHandler {
 	
 	@RequestMapping("/login.sw")
 	public String login(String users ,String pwd) {
+		System.out.println(1);
 		String user ="admin";
 		String password ="admin";       
 		  
 		if (users.equals(user)&&pwd.equals(password)) {
 			
-			return "redirect:index.jsp";
+			return "redirect:#index.jsp";
 		}else {
 			
 			return "redirect:login.jsp";
