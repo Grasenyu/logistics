@@ -81,9 +81,18 @@
  			<tx:method name="delete*" propagation="REQUIRED" /> 
  		</tx:attributes> 
  	</tx:advice> 
-	
-	
-	
+ 	
+ 	
+ 	
+ 	
+	<!-- 设置返回json的编码格式 -->
+	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+	     <property name="supportedMediaTypes">
+	         <list>
+	             <value>application/json;charset=UTF-8</value>
+	         </list>
+	     </property>
+	 </bean>
 	
   	
 </beans>

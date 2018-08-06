@@ -35,7 +35,7 @@
     <div class="login-form-area">
          <br>
          <br>
-        <form action="<%=basePath %>login.sw" method="post">
+        <form action="login.sw" method="post">
         <div class="login-input">
    
             <label for="">账&nbsp;&nbsp;&nbsp;号：</label>
