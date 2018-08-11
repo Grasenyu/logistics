@@ -12,6 +12,17 @@ public class PickoutProdBridge {
 	private Integer	plan_amt;
 	private Integer	preout_amt;
 	private Integer	out_amt;
+	private Integer	nums;
+
+
+public Integer getNums() {
+		return nums;
+	}
+
+
+	public void setNums(Integer nums) {
+		this.nums = nums;
+	}
 
 
 public PickoutProdBridge() {
