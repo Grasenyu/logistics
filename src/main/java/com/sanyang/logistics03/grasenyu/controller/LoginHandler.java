@@ -10,7 +10,7 @@ public class LoginHandler {
 	public String login(String users ,String pwd) {
 		String user ="admin";
 		String password ="admin";       
-		  
+		   
 		if (users.equals(user)&&pwd.equals(password)) {
 			
 			return "redirect:index.jsp";

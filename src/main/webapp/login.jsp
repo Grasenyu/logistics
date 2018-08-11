@@ -60,11 +60,11 @@
     });
     $(".login-btn").click(function(event) {
         /* Act on the event */
-        location.href="index.html";
+        location.href="index.jsp";
     });
      $(".ybs").click(function(event) {
         /* Act on the event */
-        location.href="login.html";
+        location.href="login.jsp";
     });
 </script>
 </html>
