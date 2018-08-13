@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanyang.logistics03.lxh.mapper.YonghuMapper">  
+
+<!-- 查询信息 -->
+<select id="goyonghu" resultType="com.sanyang.logistics03.vo.SysUser">
+select * from sys_user
+</select>
+
+<!-- 删除 -->
+
+<delete id="shangid" parameterType="java.lang.Integer">
+
+delete from sys_user where user_id ='${value}'
+</delete>
+
+
+<!-- 添加-->
+<insert id="insertYonghu"  parameterType="com.sanyang.logistics03.vo.SysUser">
+insert into sys_user values(null,#{login_id},#{password},#{name},#{email},#{phone},#{address},#{region_id})
+</insert>
+
+	
+</mapper>

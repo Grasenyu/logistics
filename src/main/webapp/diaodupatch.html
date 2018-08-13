@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="js/bootstarp-3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstarp-3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="js/bootstarp-table-1.11.1/bootstrap-table.min.css">
+    <script src="js/bootstarp-table-1.11.1/bootstrap-table.min.js"></script>
+    <script src="js/bootstarp-table-1.11.1/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+    	$(function () {
+    		$.ajax({
+    			type:"post",
+    			url:"./diao/godiaodu.sw",
+    			dataType:"json",
+    			success:function (data) {
+    				for (i=0;i<data.length;i++) {
+    					$("#tab2").append($("<tr align='center'><td><a href='chaModal'>"+data[i].sched_id+"</a></td><td>"+data[i].sched_type_id+"</td><td>"+data[i].schstatus+"</td><td><button class='glyphicon glyphicon-copy btn btn-warning' onclick='tijiao("+data[i].sched_id+")'>提交</button></td><td><button class='btn btn-primary glyphicon glyphicon-refresh' onclick='gengxin("+data[i].sched_id+")'>更新</button></td><td><button class='glyphicon glyphicon-remove btn btn-danger' onclick='deleid("+data[i].sched_id+")'>删除</button></td></tr>"));
+    				}
+    				
+    			}
+    			
+    		});
+
+    	})
+    	
+    </script>
+
+
+	<body>
+		
+		<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建调度</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">创建调度（公路）</h4>
+      </div>
+      <div class="modal-body">
+     <form class="form-horizontal" id="from">
+        
+     </from>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
+        <button type="button" class="btn btn-primary" id="btn1">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+		<table class="table table-responsive" id="tab2">
+			<tr align="center">
+				<td>调度编号</td>
+                <td>调度类型</td>
+                <td>调度状态</td>
+                <td>提交</td>
+                <td>更新</td>
+                <td>删除</td>
+			</tr>
+			
+		</table>
+		
+  <div class="modal fade" id="chaModal" tabindex="-1" role="dialog" aria-labelledby="myModalcha">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalcha">调度信息</h4>
+      </div>
+      <div class="modal-body">
+     <form class="form-horizontal" id="from">
+        
+     </from>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
+        <button type="button" class="btn btn-primary" id="btn1">添加</button>
+      </div>
+    </div>
+  </div>
+	</body>
+</html>
