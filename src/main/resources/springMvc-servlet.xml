@@ -13,9 +13,8 @@
 
 
 	<!-- 自动扫描注解 只要控制器 -->
-	<!--  -->
-	<context:component-scan base-package="com.sanyang.logistics03.*.controller"
-		use-default-filters="false">
+
+	<context:component-scan base-package="com.sanyang.logistics03.*.controller">
 		<context:include-filter type="regex"
 			expression="com.sanyang.logistics03.*.controller.*" />
 	</context:component-scan>
@@ -24,9 +23,17 @@
 	
 	<mvc:resources mapping="/img/**" location="/img/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
+<<<<<<< HEAD
 	<mvc:resources mapping="/js/bootstarp-table-1.11.1/**" location="/js/bootstarp-table-1.11.1/" />
+=======
+	<mvc:resources mapping="/js/bootstrap/**" location="/js/" />
+>>>>>>> branch 'master' of https://github.com/Grasenyu/logistics.git
 	<mvc:resources mapping="/css/**" location="/css/" />
+<<<<<<< HEAD
 	<mvc:resources mapping="/js/bootstarp-3.3.7/**" location="/js/bootstarp-3.3.7/" />
+=======
+	<mvc:resources mapping="js/bootstarp-table-1.11.1/**" location="/bootstarp-table-1.11.1/" />
+>>>>>>> branch 'master' of https://github.com/Grasenyu/logistics.git
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	<mvc:resources mapping="/plugin/**" location="/plugin/" />
 	<mvc:resources mapping="/view/**" location="/view/" />
@@ -54,7 +61,7 @@
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp" />	
+		<property name="suffix" value=".html" />	
 	</bean>
 	
 	<!-- 设置返回json的编码格式 -->

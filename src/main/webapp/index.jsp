@@ -98,7 +98,7 @@
             <dl>
                 <dt>仓储管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#" >预出库 </a>
+                    <a href="#view/yck.jsp" >预出库 </a>
                     <a href="#">出库确认 </a>
                     <a href="#">收货管理 </a>
                     <a href="#">预入库 </a>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanyang.logistics03.thh.mapper.ShglMapper">
+<select id="queryyck" resultType="com.sanyang.logistics03.vo.Warehouse">
+    select * from warehouse 
+</select>
+
+<select id="queryjhd" resultType="com.sanyang.logistics03.vo.PickOut" parameterType="java.lang.Integer">
+SELECT warehouse.*,pickout.done_flag,pickout.plan_pickout_date,pickout.pickout_id FROM warehouse,pickout where warehouse.wh_id=pickout.wh_id 
+
+<if test="value!=null and value!=0">
+AND warehouse.wh_id =#{wh_id}
+</if>
+</select>
+
+<select id="querydck" resultType="com.sanyang.logistics03.vo.PickoutProdBridge" parameterType="java.lang.Integer">
+select pickout_prod_bridge.* from pickout_prod_bridge,pickout where pickout.pickout_id=pickout_prod_bridge.pickout_id
+<if test="value!=null and value!=0">
+AND pickout.pickout_id =#{pickout_id}
+</if>
+</select>
+
+<select id="queryyckb" resultType="com.sanyang.logistics03.vo.PrepareOutWarehouse" parameterType="java.lang.Integer">
+select prepare_out_warehouse.* from prepare_out_warehouse,pickout where pickout.pickout_id=prepare_out_warehouse.pickout_id
+<if test="value!=null and value!=0">
+AND pickout.pickout_id =#{pickout_id}
+</if>
+</select>
+
+
+<update id="up" parameterType="com.sanyang.logistics03.vo.PickoutProdBridge">
+     update pickout_prod_bridge set preout_amt=preout_amt-#{nums},out_amt=out_amt+#{nums} where pickout_prod_id=#{pickout_prod_id}
+   </update>
+   
+   <delete id="del" parameterType="com.sanyang.logistics03.vo.PickoutProdBridge">
+     delete from pickout_prod_bridge where preout_amt=0
+   </delete>
+   
+   <delete id="dely" parameterType="com.sanyang.logistics03.vo.PrepareOutWarehouse">
+     delete from prepare_out_warehouse where preout_id=#{preout_id}
+   </delete>
+
+</mapper>
+
+

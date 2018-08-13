@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+  <link rel="stylesheet" type="text/css" href="../js/bootstarp-3.3.7/css/bootstrap.css"/>
+		<script src="../js/jquery-3.2.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstarp-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<link rel="stylesheet" type="text/css" href="../js/bootstarp-table-1.11.1/bootstrap-table.min.css"/>
+		<script src="../js/bootstarp-table-1.11.1/bootstrap-table.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstarp-table-1.11.1/bootstrap-table-zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../css/frame.css">
+    <link rel="stylesheet" href="../css/addClass.css">
+</head>
+
+
+<script type="text/javascript">
+$(function(){
+	   $.getJSON("../ccgl/yck.sw",function(data){
+		   	$.each(data,function(i,d){
+		   		$("#cname").append("<option value="+d.wh_id+">"+d.name+"</option>");
+		   	});
+		});
+		
+		$("#tab").bootstrapTable({
+			url:"",
+			pagination:true,
+			pageSize:10, 
+			queryParams:queryParams,
+			columns:[{
+				field:'rcpt_id',
+				title:'收货单据号',
+			    clign:'center'
+			},{
+				field:'plan_receipt_date',
+				title:'入库时间',
+			    clign:'center'
+			},{
+				field:'status_id',
+				title:'收货单状态',
+			    clign:'center'
+			},{
+				title:'收货操作',
+			    clign:'center',
+			    formatter:function (value,row,index) {
+					return"<button class='btn btn-info' data-toggle='modal' data-target='#myModal2' onclick='addmodel2("+row.pickout_id+")'><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button>"
+			    }
+			},{
+				title:'预留数量',
+			    clign:'center',
+			    formatter:function (value,row,index) {
+					return"<button class='btn btn-info' data-toggle='modal' data-target='#myModal2' onclick='addmodel2("+row.pickout_id+")'><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button>"
+			    }
+			},{
+				title:'入库确认',
+			    clign:'center',
+			    formatter:function (value,row,index) {
+					return"<button class='btn btn-info' data-toggle='modal' data-target='#myModal2' onclick='addmodel2("+row.pickout_id+")'><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button>"
+			    }
+			}]
+		})
+		
+		$("#wh").click(function(){
+			$("#tab").bootstrapTable("refresh");
+		})
+   })
+
+   function queryParams() {
+  		return {
+  			wh_id:$("#cname").val(),
+  			}
+  	}
+       
+   function addmodel2(pickout_id) {
+   		$("#tab2").bootstrapTable("destroy");
+	   $(function(){
+			$("#tab2").bootstrapTable({
+				url:"../ccgl/yckb.sw",
+				pagination:true,
+				queryParams:{"pickout_id":pickout_id},
+				pageSize:10, 
+				columns:[{
+					field:'pcode',
+					title:'库位号',
+				    clign:'center'
+				},{
+					field:'pcode',
+					title:'货物编号',
+				    clign:'center'
+				},{
+					field:'pname',
+					title:'货物名称',
+				    clign:'center'
+				},{
+					field:'plan_amt',
+					title:'入库时间',
+				    clign:'center'
+				},{
+					field:'preout_amt',
+					title:'包装单位',
+					align:'center'
+				},{
+					field:'out_amt',
+					title:'存放数量',
+					align:'center'
+				},{
+					field:'preout_amt',
+					title:'预出库数量',
+					align:'center'
+				},{
+					field:'backupid',
+					title:'备货区',
+					align:'center'
+				}]
+			})
+	})
+	        }
+</script>
+
+
+<body>
+ <div class="frame-header"><span class="page-reload cur">Home> 收货管理</span></div>
+    <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
+        <div class="pull-left left-inp defualt">
+        <select class="pull-left" name="wh_id" id="cname">
+       	 <option value="">请选择</option>
+	   </select>
+            <button class="btn delete pramary" id="wh">搜索</button> 
+        </div>      
+    </div>
+    <div class="modal fade bs-example-modal-lg" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">		
+	 <div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">待收货单列表</h4>					
+					</div>
+					
+					<div class="modal-body">
+					  <button type="button" class="btn btn-primary" id="but" onclick="add()">确认</button>
+						<button type="button" class="btn btn-success" id="bu" data-dismiss="modal" >返回</button>
+						
+						<label for="inputEmail10" class="col-sm-10 control-label">拣货单指令清单</label>
+						<br/><br/>
+<table id="tab2" class="table text-center">
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+ 
+    <!--表格-->
+    <div class="table-wrapper pl27">
+        <table id="tab" class="table text-center">
+        </table>
+</div>
+</body>
+</html>
