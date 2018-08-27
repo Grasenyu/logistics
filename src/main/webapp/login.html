@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>德邦物流，后台管理系统</title>
+    <meta name="keywords" content="点菜宝贝，后台管理系统">
+    <meta name="description" content="点菜宝贝，后台管理系统">
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/frame.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/merchant.css">
+    <link rel="stylesheet" href="css/addClass.css">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<link rel="stylesheet" href="js/bootstarp-3.3.7/css/bootstrap.min.css">
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstarp-3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="js/bootstarp-table-1.11.1/bootstrap-table.min.css">
+<script src="js/bootstarp-table-1.11.1/bootstrap-table.min.js"></script>
+<script src="js/bootstarp-table-1.11.1/bootstrap-table-zh-CN.min.js"></script>
+
+<script type="text/javascript">
+	
+	$(function () {
+		$('#denglubtn').on('click', function() {
+			var num = 0;
+			var str = "";
+			
+			$("input[type='text'],input[type='password']").each(function(n) {
+				if($(this).val() == "" || $(this).val()==null) {
+		
+					alert("用户名或密码为空，请重新输入")
+					location.href = "login.html";
+					
+					return false;
+		
+				}
+			});
+
+	            var login_id = $("#login_id").val();
+				var password = $("#password").val();
+				
+				if (num>0) {
+					return false;
+				} else{
+					$.ajax({
+					type: "post",
+					url: "./syslogin/goindexs.sw",
+					data: "login_id=" + login_id + "&password=" + password,
+					daType: "json",
+					success: function(data) {
+							if(data != 1) {
+								alert("登录成功");
+								alert(data.login_id,data.password)
+								location.href = "index.html";
+								layer.close(index);
+							} else {
+								alert("账号或密码错误请重新输入！")
+								alert("登录失败！")
+					            location.href = "login.html";
+							}
+					}
+				})
+				}
+		});
+		$(document).ready(function() {
+			$("input[type='text'],input[type='password']").blur(function() {
+				var $el = $(this);
+				var $parent = $el.parent();
+				$parent.attr('class', 'frame_style').removeClass(' form_error');
+				if($el.val() == '') {
+					$parent.attr('class', 'frame_style').addClass(' form_error');
+				}
+			});
+			$("input[type='text'],input[type='password']").focus(function() {
+				var $el = $(this);
+				var $parent = $el.parent();
+				$parent.attr('class', 'frame_style').removeClass(' form_errors');
+				if($el.val() == '') {
+					$parent.attr('class', 'frame_style').addClass(' form_errors');
+				} else {
+					$parent.attr('class', 'frame_style').removeClass(' form_errors');
+				}
+			});
+		})
+
+	
+	})
+	
+</script>
+
+<body>
+    <a href="login.jsp"><img class="login-logo" src="img/logo.png"></a>
+    <a class="login-change" href="login.jsp">PC客户端 <span>&nbsp; | &nbsp;</span> 手机客户端</a>
+    <div class="login-title default"></div>
+   <div class="login-name">管理员登录</div>
+   		<br>
+        <br>
+        <br>
+    <div class="login-form-area">
+    	
+        <form method="post" >
+        <div class="login-input">
+            <label for="">账&nbsp;&nbsp;&nbsp;号：</label>
+            <input class="ob-form login-form-user" name="login_id" id="login_id"  type="text" value="">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="login-input">
+            <label for="">密&nbsp;&nbsp;&nbsp;码：</label>
+            <input class="ob-form login-form-user" name ="password" id ="password" type="password" value="">
+        </div>
+      
+        <input type="button" align="center" class="btn order-food-menu-btn login-btn " id="denglubtn" value="登录" >
+     
+        
+        </form>
+
+    </div>
+    <div align="center" class="login-footer clearfix">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright © 2018 德邦物流 Debang.com  All Rights Reserved</div>
+</body>
+
+</html>

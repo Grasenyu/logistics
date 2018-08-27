@@ -1,24 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sanyang.logistics03.lxh.mapper.YonghuMapper">  
+<mapper namespace="com.sanyang.logistics03.lxh.mapper.YonghuMapper">
 
-<!-- 查询信息 -->
-<select id="goyonghu" resultType="com.sanyang.logistics03.vo.SysUser">
-select * from sys_user
+	<!-- 查询信息 /模糊查询 -->
+	<select id="goyonghu" resultType="com.sanyang.logistics03.vo.SysUser" parameterType="com.sanyang.logistics03.vo.SysUser">
+	    select * from sys_user ,role where sys_user.role_id = role.role_id
+	<if test="login_id!=null and login_id!=''">
+		and login_id like '%${login_id}%'
+	</if>
+    <if test="name!=null and name!=''">
+		and name like '%${name}%'
+	</if>
+	<if test="role_id!=null">
+	
+	and sys_user.role_id =#{role_id}
+	</if>
+	
+	</select>
+
+	<!-- 删除 -->
+
+	<delete id="shangid" parameterType="java.lang.Integer">
+
+		delete from sys_user where user_id ='${value}'
+	</delete>
+
+
+	<!-- 添加 -->
+	<insert id="insertYonghu" parameterType="com.sanyang.logistics03.vo.SysUser">
+		insert into sys_user values(null,#{login_id},#{password},#{name},#{email},#{phone},#{address},#{region_id},#{role_id})
+	</insert>
+
+	<!--查询地区 -->
+	<select id="chashuju" resultType="com.sanyang.logistics03.vo.Region">
+
+		select * from region
+	</select>
+	
+	<!--查角色 -->
+	<select id="chajuese" resultType="com.sanyang.logistics03.vo.Role">
+
+		select * from role
+	</select>
+
+<!-- 修改查id -->	
+<select id="selectid" resultType="com.sanyang.logistics03.vo.SysUser" parameterType="java.lang.Integer">
+
+select * from sys_user where user_id ='${value}'
+
 </select>
 
-<!-- 删除 -->
+<update id="updateyonghu"  parameterType="com.sanyang.logistics03.vo.SysUser">
 
-<delete id="shangid" parameterType="java.lang.Integer">
+update sys_user set login_id=#{login_id},password=#{password},name=#{name},email=#{email},phone=#{phone},address=#{address},region_id=#{region_id},role_id=#{role_id} where user_id=#{user_id}
 
-delete from sys_user where user_id ='${value}'
-</delete>
+</update>
+
+<!-- 用户唯一 -->
+<select resultType="com.sanyang.logistics03.vo.SysUser" parameterType="com.sanyang.logistics03.vo.SysUser" id="buchongfuser">
+
+select * from sys_user where login_id=#{login_id} 
+
+</select>
 
 
-<!-- 添加-->
-<insert id="insertYonghu"  parameterType="com.sanyang.logistics03.vo.SysUser">
-insert into sys_user values(null,#{login_id},#{password},#{name},#{email},#{phone},#{address},#{region_id})
-</insert>
-
-	
 </mapper>

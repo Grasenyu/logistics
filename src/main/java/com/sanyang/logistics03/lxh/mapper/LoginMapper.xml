@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanyang.logistics03.lxh.mapper.LoginMapper">
+
+<select id="dengluindex" resultType="com.sanyang.logistics03.vo.SysUser" parameterType="com.sanyang.logistics03.vo.SysUser">
+
+select * from sys_user where login_id= '${login_id}' and password ='${password}'
+</select>
+
+</mapper>

@@ -8,7 +8,10 @@ public class SysUser {
 	 private String  email;
 	 private String  phone;
 	 private String  address;
-	 private Integer  region_id;
+	 private Integer region_id;
+	 private String region_name;
+	 private Integer  role_id;
+	 private String role_name;
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -57,5 +60,26 @@ public class SysUser {
 	public void setRegion_id(Integer region_id) {
 		this.region_id = region_id;
 	}
+	public String getRegion_name() {
+		return region_name;
+	}
+	public void setRegion_name(String region_name) {
+		this.region_name = region_name;
+	}
+	public Integer getRole_id() {
+		return role_id;
+	}
+	public void setRole_id(Integer role_id) {
+		this.role_id = role_id;
+	}
+	public String getRole_name() {
+		return role_name;
+	}
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
+	}
+	 
+	 
+
 	 
 }

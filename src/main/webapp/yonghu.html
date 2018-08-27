@@ -17,6 +17,7 @@
 			url:"./yong/goyonghu.sw",
 			pagination:true,
 			pageSize:5,
+            queryParams:queryParams,
 			columns:[{
 				field: "login_id",
 				title: "登陆名称",
@@ -48,31 +49,18 @@
 				}]
 		})
 		
-		
-		
-		
-		//添加
-		$("#btn2").click(function () {
-		$.ajax({
-			type:"post",
-			url:"./yong/tianjiayonghu.sw",
-			data:$("#from1").serialize(),
-			success:function (data) {
-				$("#myModal").modal("hide");
-    			$("#tab1").bootstrapTable("refresh")
-    			
-			}
-		});
-		
 	})
-		
-		
+	
+	
 
-	})
 	
 	//删除
 	function shanchu(user_id) {
-			$.ajax({
+			if (user_id==1) {
+				alert("用户不可删除！")
+			    return false;
+			} else{
+				$.ajax({
 				type:"post",
 				url:"./yong/deleteYonghu.sw",
 				data:"user_id="+user_id,
@@ -80,16 +68,196 @@
 					location.assign("yonghu.html");
 				}
 			});
+			}
 			
 		}
+	
+	//拿到地区值
+	$.getJSON("./yong/chashuju.sw",function (data) {
+	    for(var i = 0; i < data.length; i++) {
+			$("#region_id1,#region_id2").append("<option value='" + data[i].region_id + "'>" + data[i].region_name + "</option>")
+	    }
+		
+		
+		
+	});
+	
+	//拿到角色
+	$.getJSON("./yong/chajuese.sw",function (data) {
+		for(var i = 0; i < data.length; i++) {
+				$("#role_id,#role_id1,#role_id2").append("<option value='" + data[i].role_id + "'>" + data[i].role_name + "</option>")
+		}	
+	});
+	
+	
+	function add(){
+		
+				$.ajax({
+				type: "post",
+				url:"./yong/buchongfuser.sw",
+				data:"login_id="+$("#login_id").val(),
+				success: function(data) {
+					if (data==0) {
+						$.ajax({
+							type: "post",
+							url: "./yong/tianjiayonghu.sw",
+							data:$("#from1").serialize(),
+							success: function(data) {
+								alert(data)
+								$("#myModal").modal("hide");
+    			                $("#tab1").bootstrapTable("refresh")					
+							}
+						});	
+					} else{
+						alert("用户名已存在")
+					}									
+				}
+			});	
+			
+			
+			
+		}
+	
 
 	
+	
+	//模糊
+	
+	function queryParams() {
+		
+		return{
+			'login_id':$("#login_id1").val(),
+			'name':$("#name1").val(),
+			'role_id':$("#role_id1").val()
+		}
+	}
+	function mocha() {
+		$("#tab1").bootstrapTable("refresh")
+		
+		
+	}
+	
+	//修改查id
+	function gengxin (user_id) {
+		$("#xiugaiModal").modal("show");
+			$.ajax({
+			type:"post",
+			url:"./yong/getidxiu.sw",
+			data:"user_id="+user_id,
+			success:function (data) {
+				$("#user_id").val(data.user_id);
+				$("#login_id2").val(data.login_id);
+				$("#password2").val(data.password);
+				$("#name2").val(data.name);
+				$("#email2").val(data.email);
+				$("#phone2").val(data.phone);
+				$("#address2").val(data.address);
+				$("#region_id2").val(data.region_id);
+				$("#role_id2").val(data.role_id);
+				
+			}
+		});
+			
+		
+	}
+	
+	function up() {
+		
+			if ($("#login_id2").val().trim().length==0||$("#name2").val().trim().length==0||$("#email2").val().trim().length==0||$("#phone2").val().trim().length==0||$("#password2").val().trim().length==0||$("#address2").val().trim().length==0||$("#login_id2").val().trim().length==0) {
+					alert("请把修改的管理员信息填写完整")
+			}else{		
+				
+				$.ajax({
+					type: "post",
+					url: "./yong/updateyonghu.sw",
+					data:$("#from2").serialize(),
+					success: function(data) {
+						alert("修改成功，请查看最新用户信息");
+						$("#xiugaiModal").modal("hide")
+						$("#tab1").bootstrapTable('refresh')
+					}
+				});
+				}
+			}
+	
+	
+	function selectxianzhi() {			
+					var addyouxiang= new RegExp(/^[0-9|A-z|_]{1,17}[@][0-9|A-z]{1,3}.(com)$/)
+					var addmima= new RegExp(/^[a-zA-Z][0-9]{5,15}$/)					
+					var addsj= new RegExp(/^1[3|4|5|8|7][0-9]\d{8}$/)
+   					var email = document.getElementById("email").value;
+   					var password =document.getElementById("password").value;
+   					var phone =document.getElementById("phone").value;
+			
+			if ($("#login_id").val().trim().length==0||$("#name").val().trim().length==0||$("#email").val().trim().length==0||$("#phone").val().trim().length==0||$("#password").val().trim().length==0||$("#address").val().trim().length==0||$("#login_id").val().trim().length==0) {
+					alert("请把新的管理员信息填写完整")		
+			}else{
+				if (addyouxiang.test(email)) {
+					if (addmima.test(password)) {
+						if (addsj.test(phone)) {
+								
+							add();
+								
+						} else{
+							alert("手机格式必须是以1开头3,4,5,7,8随机一位为第二位，长度在11位")
+						}
+					} else{
+						alert("密码格式必须是以字母开头，长度在6-15之间")
+					}
+									
+				} else{
+					alert("请输入正确的邮箱格式")
+				}				
+			}	
+		}
+		
+		function selectxianzhi2() {			
+					var addyouxiang= new RegExp(/^[0-9|A-z|_]{1,17}[@][0-9|A-z]{1,3}.(com)$/)
+					var addmima= new RegExp(/^[a-zA-Z][0-9]{5,15}$/)					
+					var addsj= new RegExp(/^1[3|4|5|8|7][0-9]\d{8}$/)
+					
+   					var email2 = document.getElementById("email2").value;
+   					var password =document.getElementById("password2").value;
+   					var phone =document.getElementById("phone2").value;
+   					
+			
+			if ($("#login_id2").val().trim().length==0||$("#name2").val().trim().length==0||$("#email2").val().trim().length==0||$("#phone2").val().trim().length==0||$("#password2").val().trim().length==0||$("#address2").val().trim().length==0||$("#login_id2").val().trim().length==0) {
+					alert("请把修改的管理员信息填写完整")	
+			}else{
+				if (addyouxiang.test(email2)) {
+					if (addmima.test(password)) {
+						if (addsj.test(phone)) {
+								up();
+								
+						} else{
+							alert("手机格式必须是以1开头3,4,5,7,8随机一位为第二位，长度在11位")
+						}
+					} else{
+						alert("密码格式必须是以字母开头，长度在6-15之间")
+					}
+									
+				} else{
+					alert("请输入正确的邮箱格式")
+				}				
+			}	
+		}
+
 	
 </script>
 <body>
 	
-	<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">创建用户</button>
+	<p id="mp">
+		 登陆名称：<input type="text" name="login_id1" id="login_id1" value=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	          用户姓名：<input type="text" name="name1" id="name1" value=""/>
+	          职位：<select  id="role_id1">
+             		<option value=""></option>
+             	</select>
+	        
+	    <button type="button" class="btn btn-primary" onclick="mocha()" id="bttn">查询</button>
+	    <!-- Button trigger modal -->
+	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">创建用户</button>
+	</p>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -112,13 +280,19 @@
         <div class="form-group">
           <label for="input2" class="col-sm-3 control-label">登陆密码：</label>
              <div class="col-sm-8">
-          <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+          <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" pattern="[A-Za-z0-9\w]{6,20}">
        </div>
       </div>
       <div class="form-group">
           <label for="input3" class="col-sm-3 control-label">用户姓名：</label>
              <div class="col-sm-8">
           <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
+       </div>
+      </div>
+       <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">邮箱：</label>
+             <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱">
        </div>
       </div>
       <div class="form-group">
@@ -133,22 +307,117 @@
           <input type="text" class="form-control" id="address" name="address" placeholder="请输入详情住址">
        </div>
       </div>
+      <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">所在地区：</label>
+             <div class="col-sm-8">
+             	<select name="region_id" id="region_id1">
+             		
+             	</select>
+          
+       </div>
+       </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">角色：</label>
+                <div class="col-sm-8" >
+                   <select  id="role_id">
+
+             	</select>
+                
+                </div>
+            </div>
       
-     </from>
+     </form>
 
       </div>
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">退出</button>
-        <button type="button" class="btn btn-primary" id="btn2">添加</button>
+        <button type="button" class="btn btn-primary" id="btn2" onclick="selectxianzhi()">添加</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- 修改模态框 -->
+<form class="form-horizontal" id="from2">
+<div class="modal fade" id="xiugaiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改用户》信息</h4>
+      </div>
+      <div class="modal-body">
+      	
+      	   
+      	     <input type="hidden" class="form-control" id="user_id" name="user_id" >
+        <div class="form-group">
+          <label for="input1" class="col-sm-3 control-label">登陆名称：</label>
+            <div class="col-sm-8">
+          <input type="text" class="form-control" id="login_id2" name="login_id">
+        </div>
+       </div>
+        <div class="form-group">
+          <label for="input2" class="col-sm-3 control-label">登陆密码：</label>
+             <div class="col-sm-8">
+          <input type="password" class="form-control" id="password2" name="password">
+       </div>
+      </div>
+      <div class="form-group">
+          <label for="input3" class="col-sm-3 control-label">用户姓名：</label>
+             <div class="col-sm-8">
+          <input type="text" class="form-control" id="name2" name="name">
+       </div>
+      </div>
+       <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">邮箱：</label>
+             <div class="col-sm-8">
+          <input type="email" class="form-control" id="email2" name=" email">
+       </div>
+      </div>
+      <div class="form-group">
+          <label for="input4" class="col-sm-3 control-label">联系电话：</label>
+             <div class="col-sm-8">
+          <input type="text" class="form-control" id="phone2" name="phone">
+       </div>
+      </div>
+      <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">联系地址：</label>
+             <div class="col-sm-8">
+          <input type="text" class="form-control" id="address2" name="address">
+       </div>
+      </div>
+      <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">所在地区：</label>
+             <div class="col-sm-8">
+             	<select name="region_id" id="region_id2">
+             		
+             	</select>
+          
+       </div>
+       </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">角色：</label>
+                <div class="col-sm-8" >
+                   <select name="role_id" id="role_id2">
 
-	
+             	</select>
+                
+            </div>
+      </div>
+
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="selectxianzhi2()">修改用户</button>
+      </div>
+    </div>
+  </div>
+</div>
+   </form>
 <table class="table table-responsive" id="tab1"></table>
+
 
 </body>
 </html>
